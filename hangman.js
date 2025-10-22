@@ -27,9 +27,8 @@ function guessLetter() {
 }
 
 function updatePage() {
-    console.log("Updated Called");
+    console.log("Ran Function: 'updatePage()'");
     var clueString = "";
-    console.log(`Updated Cluestring: ${clueString}`);
     for (var i = 0; i < word.length; i++) {
         var currentLetter = word.charAt(i);
         if (guesses.indexOf(currentLetter) >= 0) { // you guess it
