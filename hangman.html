@@ -13,8 +13,9 @@
     </div>
 
     <div>
-        <input id="guess" type="text" size="1" maxlength="1">
-        <button id="guessButton" onclick="guessLetter();">Guess</button>
+        <input id="guess" type="text" size="1" maxlength="1" disabled>
+        <button id="guessButton" onclick="guessLetter()" disabled>Guess</button> <!-- disabled buttons on da 
+        startup to not allow guesses before a word is chosen -->
     </div>
 
     <div id="guesses">
