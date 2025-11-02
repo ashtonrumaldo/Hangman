@@ -22,7 +22,7 @@ function guessLetter() {
     var message = document.getElementById("message");
     var letter = input.value;
 
-     // clear last msg each guess attempt
+    // clear last msg each guess attempt
     message.innerHTML = "";
 
     //dont let it guess previously guessed letters 2x
