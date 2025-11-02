@@ -13,6 +13,7 @@ function newGame() {
     guess_count = MAX_GUESSES;
     gameOver = false; // reset game finish status
     document.getElementById("guess").disabled = false; // enable input on new game start
+    document.getElementById("guessButton").disabled = false; //dont allow guesses when game is finished
     updatePage();
 }
 
@@ -26,7 +27,7 @@ function guessLetter() {
     console.log(`You have ${guess_count} guesses left.`);
     guesses += letter;
     updatePage();
-    input.value = "";
+    input.value = ""; //add a clear to the input field on a guess
 
     var allGuessed = true; // assume win
     for (var i = 0; i < word.length; i++) {
@@ -41,11 +42,13 @@ function guessLetter() {
         // Prevent further guessing:
         gameOver = true;
         document.getElementById("guess").disabled = true;
+        document.getElementById("guessButton").disabled = true; //dont allow guesses when game is finished
     }
     else if (guess_count <= 0) { // lose condition
         document.getElementById("guesses").innerHTML = "You lose! The word was: " + word;
         gameOver = true;
         document.getElementById("guess").disabled = true;
+        document.getElementById("guessButton").disabled = true; //dont allow guesses when game is finished
     }
 
 }
