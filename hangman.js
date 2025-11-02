@@ -3,6 +3,7 @@ var word = "";
 var guesses = "";
 var MAX_GUESSES = 6;
 var guess_count = MAX_GUESSES;
+var gameOver = false;
 
 function newGame() {
     var randomIndex = parseInt(Math.random() * POSSIBLE_WORDS.length);
@@ -10,6 +11,8 @@ function newGame() {
     console.log(`Word chosen was: ${word}`);
     guesses = "";
     guess_count = MAX_GUESSES;
+    gameOver = false; // reset game finish status
+    document.getElementById("guess").disabled = false; // enable input on new game start
     updatePage();
 }
 
@@ -24,7 +27,29 @@ function guessLetter() {
     guesses += letter;
     updatePage();
     input.value = "";
+
+    var allGuessed = true; // assume win
+    for (var i = 0; i < word.length; i++) {
+        if (guesses.indexOf(word[i]) === -1) {
+            allGuessed = false; // found letter still missing
+            break;
+        }
+    }
+
+    if (allGuessed) {
+        document.getElementById("guesses").innerHTML = "You win! The word was: " + word;
+        // Prevent further guessing:
+        gameOver = true;
+        document.getElementById("guess").disabled = true;
+    }
+    else if (guess_count <= 0) { // lose condition
+        document.getElementById("guesses").innerHTML = "You lose! The word was: " + word;
+        gameOver = true;
+        document.getElementById("guess").disabled = true;
+    }
+
 }
+
 
 function updatePage() {
     console.log("Ran Function: 'updatePage()'");
