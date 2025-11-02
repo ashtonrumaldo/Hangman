@@ -19,7 +19,20 @@ function newGame() {
 
 function guessLetter() {
     var input = document.getElementById("guess");
+    var message = document.getElementById("message");
     var letter = input.value;
+
+     // clear last msg each guess attempt
+    message.innerHTML = "";
+
+    //dont let it guess previously guessed letters 2x
+    if (guesses.indexOf(letter) !== -1) {
+        message.innerHTML = `You already guessed the letter "${letter}". Try another letter!`; //i used the way u do it.
+        input.value = "";
+        return;
+    }
+
+    //dont let user guess previously guessed letters twice
     if (word.indexOf(letter) < 0) {
         console.log(`Incorrect Guess!`);
         guess_count--;
